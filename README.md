@@ -28,4 +28,5 @@ npm install
 npm start
 ```
 7.Open browser and enter localhost:3000
+
 8.Register the user and enter the product details to search.
