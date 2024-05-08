@@ -12,8 +12,9 @@ const companyApi = "http://20.244.56.144/test"
 // }
 router.post('/auth/register',async(req,res) => {
    try{
-      console.log(req.body)
-      const userData = req.body;
+      console.log(req.body.userData)
+      const userData = req.body.userData;
+  
       const response = await axios.post(`${companyApi}/auth`,
       userData)
       token = response.data.access_token;
@@ -27,6 +28,7 @@ router.post('/auth/register',async(req,res) => {
 
 router.get('/comapines/:companyname/categories/:categoryname/products/:n',async(req,res) => {
    try{
+      console.log(req.headers);
       const { page = 1 } = req.query;
       const offset = (page - 1) * 10;
       const response = await axios.get(`${companyApi}/companies/${req.params.companyname}/categories/${req.params.categoryname}/products`,{
@@ -40,7 +42,7 @@ router.get('/comapines/:companyname/categories/:categoryname/products/:n',async(
             maxPrice: 10000
         }
       });
-      res.status(200).json({data:response.data});
+      res.status(200).json({data:response.data,offset:offset});
    }
    catch(error){
       res.status(500).json({Error:error})
