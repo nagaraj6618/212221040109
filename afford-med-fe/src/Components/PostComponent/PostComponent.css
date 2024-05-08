@@ -1,0 +1,23 @@
+.post-container{
+   background-color: blueviolet;
+   margin: 10px;
+   color: white;
+   padding: 20px;
+   border-radius: 5px;
+   flex-basis: 350px;
+   
+}
+
+.post-container-box{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+.post-container p{
+   margin: 10px;
+}
+.post-container span{
+   color: aqua;
+   text-shadow: 4px 4px red;
+   font-size: larger;
+}
