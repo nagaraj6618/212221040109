@@ -25,12 +25,20 @@ router.post('/auth/register',async(req,res) => {
    }
 })
 
-router.get('/get',async(req,res) => {
+router.get('/comapines/:companyname/categories/:categoryname/products/:n',async(req,res) => {
    try{
-      const response = await axios.get(`${companyApi}/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxPrice=10000`,{
+      const { page = 1 } = req.query;
+      const offset = (page - 1) * 10;
+      const response = await axios.get(`${companyApi}/companies/${req.params.companyname}/categories/${req.params.categoryname}/products`,{
          headers: {
             Authorization: `Bearer ${token}`
-         }
+         },
+         params: {
+            top: req.params.n,
+            offset, 
+            minPrice: 1,
+            maxPrice: 10000
+        }
       });
       res.status(200).json({data:response.data});
    }
